@@ -24,7 +24,7 @@ ln -sf ~/.gamers/.editorconfig ~/.editorconfig
 ln -sf ~/.gamers/.exports ~/.exports
 ln -sf ~/.gamers/.functions ~/.functions
 ln -sf ~/.gamers/.gitconfig ~/.gitconfig
-ln -sf ~/.gamers/.gitignore_global ~/.gitignore
+ln -sf ~/.gamers/.gitignore_global ~/.gitignore_global
 ln -sf ~/.gamers/.hushlogin ~/.hushlogin
 ln -sf ~/.gamers/.inputrc ~/.inputrc
 ln -sf ~/.gamers/.screenrc ~/.screenrc
