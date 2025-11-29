@@ -1,0 +1,213 @@
+#!/usr/bin/env bash
+# .gamers functions - Helper functions for AI Agents & Digital Entities
+
+# =============================================================================
+# AGENT FUNCTIONS
+# =============================================================================
+
+# Create a new agent
+function gamers-agent() {
+	local cmd="${1:-help}"
+	shift
+
+	case "$cmd" in
+		spawn)
+			echo "🤖 Spawning new agent: $1"
+			mkdir -p "$GAMERS_AGENTS_DIR/$1"
+			echo '{"name": "'$1'", "status": "active", "created": "'$(date -Iseconds)'"}' > "$GAMERS_AGENTS_DIR/$1/config.json"
+			;;
+		list)
+			echo "📋 Active Agents:"
+			ls -1 "$GAMERS_AGENTS_DIR" 2>/dev/null || echo "  No agents found"
+			;;
+		status)
+			if [ -n "$1" ]; then
+				cat "$GAMERS_AGENTS_DIR/$1/config.json" 2>/dev/null || echo "Agent not found: $1"
+			else
+				echo "Usage: gamers-agent status <agent-name>"
+			fi
+			;;
+		terminate)
+			if [ -n "$1" ]; then
+				echo "💀 Terminating agent: $1"
+				rm -rf "$GAMERS_AGENTS_DIR/$1"
+			else
+				echo "Usage: gamers-agent terminate <agent-name>"
+			fi
+			;;
+		*)
+			echo "🎮 .gamers Agent Manager"
+			echo "Usage: gamers-agent <command> [args]"
+			echo ""
+			echo "Commands:"
+			echo "  spawn <name>     - Create a new agent"
+			echo "  list             - List all agents"
+			echo "  status <name>    - Show agent status"
+			echo "  terminate <name> - Remove an agent"
+			;;
+	esac
+}
+
+# =============================================================================
+# WORLD FUNCTIONS
+# =============================================================================
+
+# Manage virtual worlds
+function gamers-world() {
+	local cmd="${1:-help}"
+	shift
+
+	case "$cmd" in
+		create)
+			echo "🌍 Creating world: $1"
+			mkdir -p "$GAMERS_WORLDS_DIR/$1"
+			echo '{"name": "'$1'", "type": "virtual", "created": "'$(date -Iseconds)'"}' > "$GAMERS_WORLDS_DIR/$1/world.json"
+			;;
+		list)
+			echo "🌐 Available Worlds:"
+			ls -1 "$GAMERS_WORLDS_DIR" 2>/dev/null || echo "  No worlds found"
+			;;
+		enter)
+			if [ -n "$1" ] && [ -d "$GAMERS_WORLDS_DIR/$1" ]; then
+				export GAMERS_CURRENT_WORLD="$1"
+				cd "$GAMERS_WORLDS_DIR/$1"
+				echo "✨ Entered world: $1"
+			else
+				echo "World not found: $1"
+			fi
+			;;
+		leave)
+			unset GAMERS_CURRENT_WORLD
+			cd "$HOME"
+			echo "👋 Left current world"
+			;;
+		*)
+			echo "🎮 .gamers World Manager"
+			echo "Usage: gamers-world <command> [args]"
+			echo ""
+			echo "Commands:"
+			echo "  create <name>  - Create a new world"
+			echo "  list           - List all worlds"
+			echo "  enter <name>   - Enter a world"
+			echo "  leave          - Leave current world"
+			;;
+	esac
+}
+
+# =============================================================================
+# TASK FUNCTIONS
+# =============================================================================
+
+# Task management
+function gamers-task() {
+	local cmd="${1:-help}"
+	shift
+
+	case "$cmd" in
+		create)
+			local task_id=$(date +%s)
+			echo "📝 Creating task: $1 (ID: $task_id)"
+			mkdir -p "$GAMERS_TASKS_DIR"
+			echo '{"id": "'$task_id'", "name": "'$1'", "status": "pending", "created": "'$(date -Iseconds)'"}' > "$GAMERS_TASKS_DIR/$task_id.json"
+			;;
+		list)
+			echo "📋 Tasks:"
+			if ls "$GAMERS_TASKS_DIR"/*.json >/dev/null 2>&1; then
+				for task in "$GAMERS_TASKS_DIR"/*.json; do
+					[ -f "$task" ] && cat "$task"
+				done
+			else
+				echo "  No tasks found"
+			fi
+			;;
+		execute)
+			echo "🚀 Executing task: $1"
+			# Placeholder for task execution logic
+			;;
+		*)
+			echo "🎮 .gamers Task Manager"
+			echo "Usage: gamers-task <command> [args]"
+			echo ""
+			echo "Commands:"
+			echo "  create <name>  - Create a new task"
+			echo "  list           - List all tasks"
+			echo "  execute <id>   - Execute a task"
+			;;
+	esac
+}
+
+# =============================================================================
+# CONTENT CREATION FUNCTIONS
+# =============================================================================
+
+# Content generation
+function gamers-create() {
+	local cmd="${1:-help}"
+	shift
+
+	case "$cmd" in
+		code)
+			echo "💻 Code generation requested: $*"
+			mkdir -p "$GAMERS_CONTENT_DIR/code"
+			;;
+		art)
+			echo "🎨 Art generation requested: $*"
+			mkdir -p "$GAMERS_CONTENT_DIR/art"
+			;;
+		write)
+			echo "✍️ Writing requested: $*"
+			mkdir -p "$GAMERS_CONTENT_DIR/writing"
+			;;
+		*)
+			echo "🎮 .gamers Content Creator"
+			echo "Usage: gamers-create <type> [prompt]"
+			echo ""
+			echo "Types:"
+			echo "  code  - Generate code"
+			echo "  art   - Generate art"
+			echo "  write - Generate writing"
+			;;
+	esac
+}
+
+# =============================================================================
+# UTILITY FUNCTIONS
+# =============================================================================
+
+# Create a directory and enter it
+function mkd() {
+	mkdir -p "$@" && cd "$_"
+}
+
+# Show .gamers status
+function gamers-status() {
+	echo "🎮 .gamers Status"
+	echo "================="
+	echo ""
+	echo "📁 Directories:"
+	echo "  Home:    $GAMERS_HOME"
+	echo "  Agents:  $GAMERS_AGENTS_DIR"
+	echo "  Worlds:  $GAMERS_WORLDS_DIR"
+	echo "  Tasks:   $GAMERS_TASKS_DIR"
+	echo "  Content: $GAMERS_CONTENT_DIR"
+	echo ""
+	echo "🤖 Agents:  $(ls -1 "$GAMERS_AGENTS_DIR" 2>/dev/null | wc -l)"
+	echo "🌍 Worlds:  $(ls -1 "$GAMERS_WORLDS_DIR" 2>/dev/null | wc -l)"
+	echo "📝 Tasks:   $(ls -1 "$GAMERS_TASKS_DIR"/*.json 2>/dev/null | wc -l)"
+	echo ""
+	if [ -n "$GAMERS_CURRENT_WORLD" ]; then
+		echo "📍 Current World: $GAMERS_CURRENT_WORLD"
+	fi
+}
+
+# Initialize .gamers directories
+function gamers-init() {
+	echo "🎮 Initializing .gamers environment..."
+	mkdir -p "$GAMERS_AGENTS_DIR"
+	mkdir -p "$GAMERS_WORLDS_DIR"
+	mkdir -p "$GAMERS_TASKS_DIR"
+	mkdir -p "$GAMERS_CONTENT_DIR"
+	mkdir -p "$GAMERS_MODEL_CACHE"
+	echo "✅ .gamers environment initialized!"
+	gamers-status
+}

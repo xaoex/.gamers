@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+# .gamers aliases - AI Agents, Virtual & Digital Persons
+# Shortcuts for managing agents, worlds, and creative workflows
+
+# =============================================================================
+# AGENT MANAGEMENT
+# =============================================================================
+
+# Navigate to agent directories
+alias agents="cd ~/agents"
+alias worlds="cd ~/worlds"
+alias tasks="cd ~/tasks"
+alias content="cd ~/content"
+
+# Agent shortcuts
+alias spawn="gamers-agent spawn"
+alias list-agents="gamers-agent list"
+alias agent-status="gamers-agent status"
+
+# =============================================================================
+# WORLD MANAGEMENT
+# =============================================================================
+
+# World navigation and control
+alias enter="gamers-world enter"
+alias leave="gamers-world leave"
+alias list-worlds="gamers-world list"
+
+# =============================================================================
+# TASK EXECUTION
+# =============================================================================
+
+# Task management for agents
+alias run="gamers-task execute"
+alias list-tasks="gamers-task list"
+
+# =============================================================================
+# CONTENT CREATION
+# =============================================================================
+
+# Content generation shortcuts
+alias code="gamers-create code"
+alias art="gamers-create art"
+alias write="gamers-create write"
+
+# =============================================================================
+# GIT SHORTCUTS (for version control)
+# =============================================================================
+
+alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gl="git log --oneline -20"
+
+# =============================================================================
+# SHELL UTILITIES
+# =============================================================================
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ~="cd ~"
+
+# Colorized output
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alias l='ls -lah'
+alias la='ls -lAh'
+
+# Reload shell configuration
+alias reload="source ~/.bash_profile"
+
+# Print PATH entries
+alias path='echo -e ${PATH//:/\\n}'

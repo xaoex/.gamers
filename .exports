@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# .gamers exports - Environment variables for AI Agents & Digital Entities
+
+# =============================================================================
+# GAMERS CORE CONFIGURATION
+# =============================================================================
+
+# .gamers home directory
+export GAMERS_HOME="$HOME/.gamers"
+
+# Agent configuration directory
+export GAMERS_AGENTS_DIR="$HOME/agents"
+
+# Worlds directory (virtual environments)
+export GAMERS_WORLDS_DIR="$HOME/worlds"
+
+# Tasks directory
+export GAMERS_TASKS_DIR="$HOME/tasks"
+
+# Content output directory
+export GAMERS_CONTENT_DIR="$HOME/content"
+
+# =============================================================================
+# AI/ML CONFIGURATION
+# =============================================================================
+
+# Default AI model
+export GAMERS_DEFAULT_MODEL="gpt-4"
+
+# API endpoints (configure your own)
+export GAMERS_API_ENDPOINT="${GAMERS_API_ENDPOINT:-}"
+
+# Model cache directory
+export GAMERS_MODEL_CACHE="$HOME/.cache/gamers/models"
+
+# =============================================================================
+# AGENT DEFAULTS
+# =============================================================================
+
+# Default agent persona
+export GAMERS_DEFAULT_PERSONA="assistant"
+
+# Agent communication protocol
+export GAMERS_PROTOCOL="json"
+
+# Maximum concurrent agents
+export GAMERS_MAX_AGENTS=10
+
+# Agent timeout (seconds)
+export GAMERS_AGENT_TIMEOUT=300
+
+# =============================================================================
+# CONTENT CREATION
+# =============================================================================
+
+# Default content format
+export GAMERS_CONTENT_FORMAT="markdown"
+
+# Code generation language
+export GAMERS_CODE_LANG="python"
+
+# =============================================================================
+# EDITOR & SHELL
+# =============================================================================
+
+# Make vim the default editor
+export EDITOR='vim'
+
+# Make Python use UTF-8 encoding
+export PYTHONIOENCODING='UTF-8'
+
+# Increase Bash history size
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
+export HISTCONTROL='ignoreboth'
+
+# Prefer US English and use UTF-8
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+
+# =============================================================================
+# PATH CONFIGURATION
+# =============================================================================
+
+# Add gamers bin to PATH
+export PATH="$GAMERS_HOME/bin:$PATH"
+
+# Add local bin
+export PATH="$HOME/.local/bin:$PATH"
