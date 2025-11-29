@@ -2,13 +2,36 @@
 
 Cool gamers ai bandit friends coolers entities from youth + in progression of time intelligents by me (oktay) (+dev all)
 
-## Dotfiles
+## 🎮 What is .gamers?
 
-This repository contains sensible hacker defaults for macOS and Linux, inspired by [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles).
+.gamers is a dotfiles collection for **AI Agents, Virtual & Digital Persons** - intelligent entities capable of:
+- 🤖 **Executing tasks** autonomously
+- 🌍 **Living in worlds** (virtual environments)
+- 💻 **Creating content/code/work** through AI-powered workflows
 
-### Installation
+## Features
 
-Clone this repository and create symlinks to your home directory:
+### Agent Management
+- Spawn, list, and manage AI agents
+- Configure agent personas and behaviors
+- Monitor agent status and health
+
+### World System
+- Create and manage virtual worlds
+- Enter and leave different environments
+- Track current world context
+
+### Task Execution
+- Create and queue tasks for agents
+- Execute workflows automatically
+- Track task progress and status
+
+### Content Creation
+- Generate code with AI assistance
+- Create art and visual content
+- Write and compose documents
+
+## Installation
 
 ```bash
 # Clone the repository
@@ -19,64 +42,106 @@ ln -sf ~/.gamers/.aliases ~/.aliases
 ln -sf ~/.gamers/.bash_profile ~/.bash_profile
 ln -sf ~/.gamers/.bash_prompt ~/.bash_prompt
 ln -sf ~/.gamers/.bashrc ~/.bashrc
-ln -sf ~/.gamers/.curlrc ~/.curlrc
-ln -sf ~/.gamers/.editorconfig ~/.editorconfig
 ln -sf ~/.gamers/.exports ~/.exports
 ln -sf ~/.gamers/.functions ~/.functions
 ln -sf ~/.gamers/.gitconfig ~/.gitconfig
 ln -sf ~/.gamers/.gitignore_global ~/.gitignore_global
-ln -sf ~/.gamers/.hushlogin ~/.hushlogin
-ln -sf ~/.gamers/.inputrc ~/.inputrc
-ln -sf ~/.gamers/.screenrc ~/.screenrc
-ln -sf ~/.gamers/.tmux.conf ~/.tmux.conf
-ln -sf ~/.gamers/.vimrc ~/.vimrc
-ln -sf ~/.gamers/.wgetrc ~/.wgetrc
 
 # Reload your shell
 source ~/.bash_profile
+
+# Initialize .gamers directories
+gamers-init
 ```
 
-### Included Dotfiles
+## Quick Start
+
+```bash
+# Check your .gamers status
+gamers-status
+
+# Create a new agent
+gamers-agent spawn my-first-agent
+
+# List all agents
+gamers-agent list
+
+# Create a virtual world
+gamers-world create sandbox
+
+# Enter the world
+gamers-world enter sandbox
+
+# Create a task
+gamers-task create "Build a website"
+
+# Generate code
+gamers-create code "Python function to sort a list"
+```
+
+## Included Dotfiles
 
 | File | Description |
 |------|-------------|
-| `.aliases` | Shell aliases for navigation, git shortcuts, colorized output, and more |
-| `.bash_profile` | Main Bash configuration that loads other dotfiles |
-| `.bash_prompt` | Custom colorful Git-aware shell prompt (Solarized Dark theme) |
+| `.aliases` | Agent, world, task, and content creation shortcuts |
+| `.bash_profile` | Main entry point, loads .gamers environment |
+| `.bash_prompt` | Custom prompt showing current world and git status |
 | `.bashrc` | Sources `.bash_profile` for non-login shells |
-| `.curlrc` | Curl configuration with sensible defaults |
-| `.editorconfig` | Editor configuration for consistent coding styles |
-| `.exports` | Environment variable exports (editor, history, language) |
-| `.functions` | Useful shell functions (`mkd`, `targz`, `fs`, `server`, etc.) |
-| `.gitconfig` | Git configuration with useful aliases and settings |
-| `.gitignore_global` | Global gitignore patterns (OS files, thumbnails, etc.) |
-| `.hushlogin` | Disables login messages |
-| `.inputrc` | Readline configuration for better tab completion |
-| `.screenrc` | Screen configuration |
-| `.tmux.conf` | Tmux configuration with Vim key bindings |
-| `.vimrc` | Vim configuration (Solarized theme, line numbers, etc.) |
-| `.wgetrc` | Wget configuration with sensible defaults |
+| `.exports` | Environment variables for .gamers configuration |
+| `.functions` | Core functions for agent/world/task management |
+| `.gitconfig` | Git configuration with useful aliases |
+| `.gitignore_global` | Global gitignore patterns |
+
+## Configuration
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `GAMERS_HOME` | .gamers installation directory | `~/.gamers` |
+| `GAMERS_AGENTS_DIR` | Agent storage directory | `~/agents` |
+| `GAMERS_WORLDS_DIR` | Virtual worlds directory | `~/worlds` |
+| `GAMERS_TASKS_DIR` | Tasks directory | `~/tasks` |
+| `GAMERS_CONTENT_DIR` | Generated content directory | `~/content` |
+| `GAMERS_DEFAULT_MODEL` | Default AI model | `gpt-4` |
+| `GAMERS_MAX_AGENTS` | Maximum concurrent agents | `10` |
 
 ### Customization
 
-You can create a `~/.extra` file to add your own settings without committing them:
+Create a `~/.extra` file for personal settings:
 
 ```bash
-# Git credentials
-GIT_AUTHOR_NAME="Your Name"
-GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="your.email@example.com"
-GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-git config --global user.email "$GIT_AUTHOR_EMAIL"
+# Your API keys
+export GAMERS_API_KEY="your-api-key"
+
+# Custom model
+export GAMERS_DEFAULT_MODEL="gpt-4-turbo"
 ```
 
-You can also create a `~/.path` file to extend your `$PATH`:
+## Commands Reference
 
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-```
+### Agent Commands
+- `gamers-agent spawn <name>` - Create a new agent
+- `gamers-agent list` - List all agents
+- `gamers-agent status <name>` - Show agent status
+- `gamers-agent terminate <name>` - Remove an agent
 
-### Credits
+### World Commands
+- `gamers-world create <name>` - Create a new world
+- `gamers-world list` - List all worlds
+- `gamers-world enter <name>` - Enter a world
+- `gamers-world leave` - Leave current world
 
-These dotfiles are based on [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles), one of the most popular dotfiles repositories on GitHub.
+### Task Commands
+- `gamers-task create <name>` - Create a new task
+- `gamers-task list` - List all tasks
+- `gamers-task execute <id>` - Execute a task
+
+### Content Commands
+- `gamers-create code <prompt>` - Generate code
+- `gamers-create art <prompt>` - Generate art
+- `gamers-create write <prompt>` - Generate writing
+
+## License
+
+MIT License - Created by oktay (+dev all)

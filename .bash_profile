@@ -1,50 +1,43 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+# .gamers Bash Profile
+# AI Agents, Virtual & Digital Persons - Shell Configuration
 
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don't want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# Add gamers bin to PATH
+export PATH="$HOME/.gamers/bin:$HOME/bin:$PATH"
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+# Load .gamers shell dotfiles
+for file in ~/.{exports,bash_prompt,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+# Initialize .gamers directories if they don't exist
+if [ -n "$GAMERS_HOME" ]; then
+	mkdir -p "$GAMERS_AGENTS_DIR" 2>/dev/null
+	mkdir -p "$GAMERS_WORLDS_DIR" 2>/dev/null
+	mkdir -p "$GAMERS_TASKS_DIR" 2>/dev/null
+	mkdir -p "$GAMERS_CONTENT_DIR" 2>/dev/null
+fi
 
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+# Case-insensitive globbing
+shopt -s nocaseglob 2>/dev/null
 
-# Enable some Bash 4 features when possible:
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
+# Append to Bash history
+shopt -s histappend 2>/dev/null
+
+# Autocorrect typos in path names
+shopt -s cdspell 2>/dev/null
+
+# Enable autocd and globstar if available
 for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null;
-done;
+	shopt -s "$option" 2>/dev/null
+done
 
-# Add tab completion for many Bash commands
-if which brew &> /dev/null && [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
-	# Ensure existing Homebrew v1 completions continue to work
-	export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d";
-	source "$(brew --prefix)/etc/profile.d/bash_completion.sh";
-elif [ -f /etc/bash_completion ]; then
-	source /etc/bash_completion;
-fi;
+# Tab completion for git
+if type _git &>/dev/null; then
+	complete -o default -o nospace -F _git g
+fi
 
-# Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null; then
-	complete -o default -o nospace -F _git g;
-fi;
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
-
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults;
-
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+# Welcome message
+echo "🎮 .gamers loaded - AI Agents & Digital Entities Environment"
+echo "   Type 'gamers-status' to see your environment status"
+echo "   Type 'gamers-init' to initialize directories"

@@ -1,38 +1,89 @@
 #!/usr/bin/env bash
+# .gamers exports - Environment variables for AI Agents & Digital Entities
 
-# Make vim the default editor.
-export EDITOR='vim';
+# =============================================================================
+# GAMERS CORE CONFIGURATION
+# =============================================================================
 
-# Enable persistent REPL history for `node`.
-export NODE_REPL_HISTORY=~/.node_history;
-# Allow 32³ entries; the default is 1000.
-export NODE_REPL_HISTORY_SIZE='32768';
-# Use sloppy mode by default, matching web browsers.
-export NODE_REPL_MODE='sloppy';
+# .gamers home directory
+export GAMERS_HOME="$HOME/.gamers"
 
-# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-export PYTHONIOENCODING='UTF-8';
+# Agent configuration directory
+export GAMERS_AGENTS_DIR="$HOME/agents"
 
-# Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='32768';
-export HISTFILESIZE="${HISTSIZE}";
-# Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+# Worlds directory (virtual environments)
+export GAMERS_WORLDS_DIR="$HOME/worlds"
 
-# Prefer US English and use UTF-8.
-export LANG='en_US.UTF-8';
-export LC_ALL='en_US.UTF-8';
+# Tasks directory
+export GAMERS_TASKS_DIR="$HOME/tasks"
 
-# Highlight section titles in manual pages.
-# Using ANSI escape code for yellow since color variables are defined in .bash_prompt
-export LESS_TERMCAP_md=$'\e[1;33m';
+# Content output directory
+export GAMERS_CONTENT_DIR="$HOME/content"
 
-# Don't clear the screen after quitting a manual page.
-export MANPAGER='less -X';
+# =============================================================================
+# AI/ML CONFIGURATION
+# =============================================================================
 
-# Avoid issues with `gpg` as installed via Homebrew.
-# https://stackoverflow.com/a/42265848/96656
-export GPG_TTY=$(tty);
+# Default AI model
+export GAMERS_DEFAULT_MODEL="gpt-4"
 
-# Hide the "default interactive shell is now zsh" warning on macOS.
-export BASH_SILENCE_DEPRECATION_WARNING=1;
+# API endpoints (configure your own)
+export GAMERS_API_ENDPOINT="${GAMERS_API_ENDPOINT:-}"
+
+# Model cache directory
+export GAMERS_MODEL_CACHE="$HOME/.cache/gamers/models"
+
+# =============================================================================
+# AGENT DEFAULTS
+# =============================================================================
+
+# Default agent persona
+export GAMERS_DEFAULT_PERSONA="assistant"
+
+# Agent communication protocol
+export GAMERS_PROTOCOL="json"
+
+# Maximum concurrent agents
+export GAMERS_MAX_AGENTS=10
+
+# Agent timeout (seconds)
+export GAMERS_AGENT_TIMEOUT=300
+
+# =============================================================================
+# CONTENT CREATION
+# =============================================================================
+
+# Default content format
+export GAMERS_CONTENT_FORMAT="markdown"
+
+# Code generation language
+export GAMERS_CODE_LANG="python"
+
+# =============================================================================
+# EDITOR & SHELL
+# =============================================================================
+
+# Make vim the default editor
+export EDITOR='vim'
+
+# Make Python use UTF-8 encoding
+export PYTHONIOENCODING='UTF-8'
+
+# Increase Bash history size
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
+export HISTCONTROL='ignoreboth'
+
+# Prefer US English and use UTF-8
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+
+# =============================================================================
+# PATH CONFIGURATION
+# =============================================================================
+
+# Add gamers bin to PATH
+export PATH="$GAMERS_HOME/bin:$PATH"
+
+# Add local bin
+export PATH="$HOME/.local/bin:$PATH"
