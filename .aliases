@@ -12,10 +12,8 @@ alias worlds="cd ~/worlds"
 alias tasks="cd ~/tasks"
 alias content="cd ~/content"
 
-# Quick agent shortcuts
-alias agent="gamers-agent"
+# Agent shortcuts
 alias spawn="gamers-agent spawn"
-alias kill-agent="gamers-agent terminate"
 alias list-agents="gamers-agent list"
 alias agent-status="gamers-agent status"
 
@@ -24,10 +22,8 @@ alias agent-status="gamers-agent status"
 # =============================================================================
 
 # World navigation and control
-alias world="gamers-world"
 alias enter="gamers-world enter"
 alias leave="gamers-world leave"
-alias world-status="gamers-world status"
 alias list-worlds="gamers-world list"
 
 # =============================================================================
@@ -35,10 +31,7 @@ alias list-worlds="gamers-world list"
 # =============================================================================
 
 # Task management for agents
-alias task="gamers-task"
 alias run="gamers-task execute"
-alias queue="gamers-task queue"
-alias task-status="gamers-task status"
 alias list-tasks="gamers-task list"
 
 # =============================================================================
@@ -46,52 +39,9 @@ alias list-tasks="gamers-task list"
 # =============================================================================
 
 # Content generation shortcuts
-alias create="gamers-create"
-alias generate="gamers-create generate"
 alias code="gamers-create code"
 alias art="gamers-create art"
 alias write="gamers-create write"
-alias compose="gamers-create compose"
-
-# =============================================================================
-# AI/ML TOOLS
-# =============================================================================
-
-# AI model interactions
-alias ai="gamers-ai"
-alias chat="gamers-ai chat"
-alias complete="gamers-ai complete"
-alias embed="gamers-ai embed"
-alias train="gamers-ai train"
-
-# =============================================================================
-# DIGITAL IDENTITY
-# =============================================================================
-
-# Identity and persona management
-alias persona="gamers-persona"
-alias identity="gamers-persona identity"
-alias avatar="gamers-persona avatar"
-alias voice="gamers-persona voice"
-
-# =============================================================================
-# COLLABORATION
-# =============================================================================
-
-# Multi-agent collaboration
-alias collab="gamers-collab"
-alias sync="gamers-collab sync"
-alias share="gamers-collab share"
-alias broadcast="gamers-collab broadcast"
-
-# =============================================================================
-# MONITORING & LOGS
-# =============================================================================
-
-# System monitoring
-alias logs="gamers-logs"
-alias metrics="gamers-metrics"
-alias health="gamers-health"
 
 # =============================================================================
 # GIT SHORTCUTS (for version control)
